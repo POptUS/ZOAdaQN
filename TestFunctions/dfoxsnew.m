@@ -106,7 +106,7 @@ switch nprob
         prob.fbest  = 0;
         prob.xbest  = zeros(n, 1);
 
-    case 305 %Raghu: Adding 300 as prefix % Another version of MGH 1:  Rosenbrock
+    case 305 % Raghu: Adding 300 as prefix % Another version of MGH 1:  Rosenbrock
         % SW calls this alternative chained rosenbrock
         if m ~= 2 * n - 2
             error(eid, err{7});

@@ -1,14 +1,14 @@
-function [y, ysmooth] = calfun_randmat(x,sigma,randmat,problem)
+function [y, ysmooth] = calfun_randmat(x, sigma, randmat, problem)
 %     This is a modified version of the subroutine calfun.m
 %     available at
 %     https://github.com/POptUS/BenDFO
 %
 % Inputs:
-%       x 	array of length n
-%	sigma  	scalar defines the standard deviation of noise
-%   randmat should be S by m matrix 
+%       x   array of length n
+%   sigma   scalar defines the standard deviation of noise
+%   randmat should be S by m matrix
 % Outputs:
-%       y 	: stochastic function value
+%       y   : stochastic function value
 %       ysmooth: smooth deterministic function value
 %
 %
@@ -24,15 +24,15 @@ function [y, ysmooth] = calfun_randmat(x,sigma,randmat,problem)
 %           'absnormal' corresponds to stochastic Gaussian absolute noise
 %           'reluniform' corresponds to stochastic uniform relative noise
 %           'relnormal' corresponds to stochastic Gaussian relative noise
-%	**Note: the noise is applied independently to each component before
-%		the components are squared and summed, additional variance
-%		control will necessarily need to account for the value m	
+%   **Note: the noise is applied independently to each component before
+%       the components are squared and summed, additional variance
+%       control will necessarily need to account for the value m
 %
 %
-%     To store the evaluation history, additional variables are passed 
-%     through global variables. These may be commented out if a user 
+%     To store the evaluation history, additional variables are passed
+%     through global variables. These may be commented out if a user
 %     desires. They are:
-%       nfev is a non-negative integer containing the number of function 
+%       nfev is a non-negative integer containing the number of function
 %          evaluations done so far (nfev=0 is a good default).
 %          after calling calfun, nfev will be incremented by one.
 %       np is a counter for the test problem number. np=1 is a good
@@ -41,26 +41,26 @@ function [y, ysmooth] = calfun_randmat(x,sigma,randmat,problem)
 %          values, the entry fvals(nfev+1,np) being updated here.
 %
 
-%global m nprob probtype fvals nfev np
+% global m nprob probtype fvals nfev np
 
-m=problem.m;
-nprob=problem.nprob;
-probtype=problem.probtype;
-n = size(x,1); % Problem dimension
-%S=length(batch); % batch size
+m = problem.m;
+nprob = problem.nprob;
+probtype = problem.probtype;
+n = size(x, 1); % Problem dimension
+% S=length(batch); % batch size
 % Generate the vector
-if nprob<100
-    fvec = dfovec(m,n,x,nprob);
+if nprob < 100
+    fvec = dfovec(m, n, x, nprob);
 else
-    fvec = mghvec(m,n,x,nprob);
-    %fvec = mghvec(m,n,x,nprob-100); 
+    fvec = mghvec(m, n, x, nprob);
+    % fvec = mghvec(m,n,x,nprob-100);
 end
 
 % Calculate the function value
 switch probtype
 %     case 'reluniform' % Didn't finish coding uniform
 %         if nargin<2
-% 	        sigma=10^-3;
+%           sigma=10^-3;
 %         elseif nargin >=3
 %             rand('seed',seed)
 %         end
@@ -68,25 +68,25 @@ switch probtype
 %         fvec = fvec.*(1+z);
 %         y = sum(fvec.^2);
     case 'relnormal'
-        if nargin<2
-	        sigma=10^-3;
+        if nargin < 2
+            sigma = 10^-3;
         end
-        if nargout>1
+        if nargout > 1
             ysmooth = sum(fvec.^2);
         end
 %        S=size(randmat,1);
-        z=sigma*randmat';
+        z = sigma * randmat';
 %        z=zeros(m,S);
 %         for i=1:S
 %             randn('seed',batch(i));
 %             z(:,i) = sigma*randn(m,1);
 %         end
-        fvec = fvec.*(1+z);
+        fvec = fvec .* (1 + z);
         y = sum(fvec.^2);
-        y=(1/(1 + sigma^2))*(sum(y)/length(y));
+        y = (1 / (1 + sigma^2)) * (sum(y) / length(y));
 %     case 'absuniform' % Didn't finish coding uniform
 %         if nargin<2
-% 	        sigma=10^-3;
+%           sigma=10^-3;
 %         elseif nargin >=3
 %             rand('seed',seed)
 %         end
@@ -94,34 +94,34 @@ switch probtype
 %         fvec = fvec+z;
 %         y = sum(fvec.^2);
     case 'absnormal'
-        if nargin<2
-	        sigma=10^-3;
+        if nargin < 2
+            sigma = 10^-3;
         end
-        if nargout>1
+        if nargout > 1
             ysmooth = sum(fvec.^2);
         end
-        z=sigma*randmat';
+        z = sigma * randmat';
 %         z=zeros(m,S);
 %         for i=1:S
 %             randn('seed',batch(i));
 %             z(:,i) = sigma*randn(m,1);
 %         end
-	%elseif nargin >=3
-	%	randn('seed',seed)
-	%end
+    % elseif nargin >=3
+    %   randn('seed',seed)
+    % end
     %    z = sigma*randn(m,1);
-        fvec = fvec+z;
+        fvec = fvec + z;
         y = sum(fvec.^2);
-        y=(sum(y)/length(y)) - m*sigma^2;
+        y = (sum(y) / length(y)) - m * sigma^2;
     case 'smooth'
         y = sum(fvec.^2);
 end
 
 % Update the function value history
-%nfev = nfev +1;
-%fvals(nfev,np) = y;
+% nfev = nfev +1;
+% fvals(nfev,np) = y;
 
 % Optional truncation:
-%if y>1e64
+% if y>1e64
 %  display('Function value exceeds 10^64')
-%end
+% end
