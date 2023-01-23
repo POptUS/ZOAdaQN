@@ -26,8 +26,9 @@ The following directories will be created:
 The package consists of different folders:
 
 * `PlotFunctions`: Consists of functions used to generate plots
+                        This includes a version of Mark Schmidt's [prettyPlot](https://www.cs.ubc.ca/~schmidtm/Software/prettyPlot.html)
 * `ZOAdaQNFunctions`: Consists of all the main functions used in the algorithms
-                      e.g., line search, quasi-Newton techniques, variance functions, etc.
+                        e.g., line search, quasi-Newton techniques, variance functions, etc.
 * `TestFunctions`: Contains the SG algorithm, and files given in the
     			[BenDFO](https://github.com/POptUS/BenDFO)
     			and
