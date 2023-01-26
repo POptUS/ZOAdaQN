@@ -45,6 +45,7 @@ end
 
     if exist(resultFile_short, 'file')
         fprintf('\nResult file exists\n');
+    else
     [Obj, inputvals, w] = SettingObjective(loss, data, Options);
 
     % including this for gaussian smoothing - DFO

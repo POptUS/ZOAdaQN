@@ -140,6 +140,7 @@ if ~isempty(errors)
             applyStyle(hU,i,lineWidth,errorColors,errorStyle,[],markerSpacing);
         else
             hE = fill([x{i}(:);flipud(x{i}(:))],[errors{i,1}(:);flipud(errors{i,2}(:))],errorColors(i,:),'LineStyle','none');
+            hE.FaceAlpha = 0.5;  % for 50% transparent
         end
     end
     

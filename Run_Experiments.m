@@ -3,22 +3,27 @@
 % Zeroth-Order Stochastic Optimization."
 % The results are stored in the "Results" folder and plots are stored in
 % the "Plots" folder.
-% Note that, by default, all the results files exist in the Results
-% folder. Based on the user input, we re-run the experiments again
-% for the finite-difference adaptive sampling quasi-Newton methods. We use
-% the existing results of stochastic gradient based methods for plotting
-% the results.
 %
-% If one wants to re-run the stochastic gradient experiments
-% too, then please run the Instance_CuterSG.m file in
-% ZOAdaQNFunctions/SGAlgorithms/. The working directory should still be
-% Matlab Code.
+% We run the expiremts for finite-difference adaptive sampling quasi-Newton
+% methods. Base on the user input, we re-run the stochastic gradient based
+% experiments for plotting. If the user input is "No" then we will only 
+% plot finite-difference adaptive sampling quasi-Newton methods. 
 %
-% Also note the optimum function values in each case are already computed
-% and stored in the results folder. So, if one wants to use noise
-% parameter values other than those given in the paper, please run
-% the Instance_CuterOptimum.m file in ZOAdaQNFunctions folder.  Again,
+% The optimal function values for each dataset are obtained by running
+% "Instance_CuterOptimum.m" file in ZOAdaQNFunctions folder. The
 % the working directory should be Matlab Code
+%
+% If one wants to re-run all the stochastic gradient experiments
+% then please run the Instance_CuterSG.m file in
+% ZOAdaQNFunctions/SGAlgorithms/. The working directory should still be
+% Matlab Code. 
+% 
+% Please note that the optimal step-size for the datasets and
+% the noise values (10^-3, 10^-5) have been found by grid search already. 
+% If one wants to test noise parameter values other than those given in the 
+% paper, please provide the corresponding optimal step-size value in the 
+% Instance_CuterSG.m and in the PlotExperiments_DFO.m file
+% 
 
 % Please use the names under absloss and relloss in datas variable
 % for running the experiments
@@ -56,30 +61,34 @@ datas = {'15-absnormal'}; % other values:15-relnormal, 18-absnormal, 18-relnorma
 % '220-absnormal', '220-relnormal'};
 sigmas = {10^-3}; % other values: 10^-5;
 loss = 'CuterDFO';
-run = input(strcat('Do you want to re-run the experiments for the dataset \n', ...
+run_SG = input(strcat('Do you want to run the Stochastic Gradient experiments for the dataset \n', ...
     '   with datas = ', datas{:}, ', sigmas = ', num2str(sigmas{:}), ' \n', ...
     '(y/n)? \n', ...
-    'If you do not select y, existing results will be used to generate plots'), 's');
-if strcmp(run, 'y') == 1
-    % select number of random runs;
-    rand_runs_adamethods = 5; % default 5
-    Instance_CuterDFO;      % Run ZOAdaQN
-    Instance_CuterSG;       % Run SG
-    Instance_CuterOptimum;  % Run Deterministic QN
+    'If you do not select y, then only Adaptive Sampling Finite-Difference Quasi-Newton methods will be used to generate plots'), 's');
+% select number of random runs;
+rand_runs_adamethods = 5; % default 5
+Instance_CuterDFO;             % Run ZOAdaQN
+Instance_CuterOptimum_Single;  % Run Deterministic QN
+
+if strcmp(run_SG, 'y') == 1
+    Instance_CuterSG_Single;       % Run SG
+    PlotExperiments_DFO            % Plotting SG and Adaptive Sampling Methods
+else
+    PlotExperiments_DFO_Ada;  % Plotting only Adaptive Sampling Methods       
 end
-PlotExperiments_DFO;
+
 
 %% Running experiments on nonsmooth loss (MAD loss) for random matrix
 datas = {'Rand-50-50'};
 sigmas = {[]};
 loss = 'MAD';
-run = input(strcat('Do you want to re-run the experiments for the dataset \n', ...
-    '   with datas = ', datas{:}, ', sigmas = ', num2str(sigmas{:}), ' \n', ...
-    '(y/n)? \n', ...
-    'If you do not select y, existing results will be used to generate plots'), 's');
-if strcmp(run, 'y') == 1
-    % select number of random runs;
-    rand_runs_adamethods = 5; % default 5
-    Instance_CuterDFO;
+
+Instance_CuterDFO;             % Run ZOAdaQN
+
+if strcmp(run_SG, 'y') == 1
+    Instance_CuterSG_Single;       % Run SG
+    PlotExperiments_DFO            % Plotting SG and Adaptive Sampling Methods
+else
+    PlotExperiments_DFO_Ada;  % Plotting only Adaptive Sampling Methods       
 end
-PlotExperiments_DFO;
+
