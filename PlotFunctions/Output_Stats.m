@@ -103,7 +103,7 @@ batch_stats = [batch_min batch_max batch_mean batch_med];
 
 steps_min = min(steps, [], 2);
 steps_max = max(steps, [], 2);
-steps_mean = sum(steps, 2) / 5;
+steps_mean = sum(steps, 2) / r;
 steps_med = median(steps, 2);
 steps_stats = [steps_min steps_max steps_mean steps_med];
 

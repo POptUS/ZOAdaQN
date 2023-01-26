@@ -38,7 +38,7 @@ Options.MaxEpochs = 2000;
 Options.DFOmethod = 'FD';
 Options.DFOinterval = sqrt(10^-16);
 Options.StoreInterval = 1 / 10^12;
-Options.lambda = 10^-3;
+Options.lambda = lambda; % Modified this from 10^-3 for public github code
 Options.Method = 'Deterministic';
 
 switch data
@@ -75,7 +75,7 @@ Options.Init_Stor = '1000';
 Options.DFOMethod = 'FD';
 Options.DFODirs = [];
 Options.StopTest = [];
-[iter1, ~, funvalsiter1, funvalsepoch1, epoch1, ~] = Output_Stats(@CallPlotExperiments_SG_CuterDFO, data, Options, 'SG-DFO', [1:5], d, d + 1);
+[iter1, ~, funvalsiter1, funvalsepoch1, epoch1, ~] = Output_Stats(@CallPlotExperiments_SG_CuterDFO, data, Options, 'SG-DFO', [1:rand_runs_adamethods], d, d + 1);
 
 % Sphere smoothing results
 Options.DFOMethod = 'SS';
@@ -84,7 +84,7 @@ Options.epsilon = 10^-6;
 Options.StopTest = [];
 GS_dirs = str2num(Options.DFODirs);
 Options.alpha0 = 2^alphaSS;
-[iter2, ~, funvalsiter2, funvalsepoch2, epoch2, ~] = Output_Stats(@CallPlotExperiments_SG_CuterDFO, data, Options, 'SG-DFO', [1:5], GS_dirs, GS_dirs + 1);
+[iter2, ~, funvalsiter2, funvalsepoch2, epoch2, ~] = Output_Stats(@CallPlotExperiments_SG_CuterDFO, data, Options, 'SG-DFO', [1:rand_runs_adamethods], GS_dirs, GS_dirs + 1);
 
 %% Loading the results of FD-ASQN methods
 Options = Initialize(); % Initialized with empty/default values

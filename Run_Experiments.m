@@ -66,12 +66,18 @@ run_SG = input(strcat('Do you want to run the Stochastic Gradient experiments fo
     '(y/n)? \n', ...
     'If you do not select y, then only Adaptive Sampling Finite-Difference Quasi-Newton methods will be used to generate plots'), 's');
 % select number of random runs;
-rand_runs_adamethods = 5; % default 5
+rand_runs_adamethods = 5; % default 5 need to be atleast 3 for plots
 Instance_CuterDFO;             % Run ZOAdaQN
+
+% Run Deterministic QN to get optimal function values
+loss='Cuter';
 Instance_CuterOptimum_Single;  % Run Deterministic QN
 
 if strcmp(run_SG, 'y') == 1
-    Instance_CuterSG_Single;       % Run SG
+    % Run SG
+    loss='CuterDFO';
+    Instance_CuterSG_Single;       
+
     PlotExperiments_DFO            % Plotting SG and Adaptive Sampling Methods
 else
     PlotExperiments_DFO_Ada;  % Plotting only Adaptive Sampling Methods       

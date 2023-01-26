@@ -38,7 +38,7 @@ Options.MaxEpochs = 2000;
 Options.DFOmethod = 'FD';
 Options.DFOinterval = sqrt(10^-16);
 Options.StoreInterval = 1 / 10^12;
-Options.lambda = 10^-3;
+Options.lambda = lambda; % Changing to lambda instead of 10-3 for rerunningthe optimal value scenario. 
 Options.Method = 'Deterministic';
 
 switch data
