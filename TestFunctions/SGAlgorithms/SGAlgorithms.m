@@ -1,5 +1,5 @@
 function [w, output] = SGAlgorithms(Obj, inputvals, Options, w)
-% This is the main file for running the comparative optimization algorithms 
+% This is the main file for running the comparative optimization algorithms
 % for the ZOAdaQN paper.
 % It requires the following inputs as explained below.
 %
