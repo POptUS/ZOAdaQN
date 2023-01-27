@@ -36,7 +36,6 @@ function [] = CallDeterministicQuasiNewtonAlgorithm(loss, data, Options, Expmnt,
     if exist(resultFile_short, 'file')
         fprintf('\nResult file exists\n');
     else
-        %diary(resultString_short);
         [Obj, inputvals, w] = SettingObjective(loss, data, Options);
 
         tic;

@@ -1,9 +1,6 @@
 % This file runs the Deterministic algorithms to find the optimal solution
 % for Cuter problems.
 
-%clear;
-%clc;
-
 % Options is the structue to provide the parameters required in the
 % algorithm.
 
@@ -48,7 +45,7 @@ datas_names = {'15-absnormal', '20-absnormal', '15-relnormal', '22-absnormal', .
        '124-absnormal', '123-absnormal', '305-absnormal', ...
        '205-relnormal', '216-relnormal', '220-relnormal', ...
        '124-relnormal', '123-relnormal', '305-relnormal'};
-%sigmas = {10^-3, 10^-5};
+% sigmas = {10^-3, 10^-5};
 datapoints = {100000};
 Options.cuter_maxsample = 100000;
 loss = 'Cuter';
@@ -60,8 +57,6 @@ Options.DFOMethod = 'FD';
 Options.DFOMachinePrecision = 10^-16;
 Options.DFOIntervalFactor = 1;
 Options.StoreInterval = 1 / 10^12;
-
-
 
 for dat = 1:length(datas)
     data = datas{dat};

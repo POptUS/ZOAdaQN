@@ -1,9 +1,6 @@
 % This file runs the stochastic finite-difference gradient and sphere
-% smoothing algorithms for the specified data and regularizatio values. 
-% If no name is provided, default data will be used.  
-
-%clear;
-%clc;
+% smoothing algorithms for the specified data and regularization values.
+% If no name is provided, default data will be used.
 
 % Options is the structue to provide the parameters required in the
 % algorithm.
@@ -30,7 +27,7 @@ Options.DFOInterval = 'Fixed';
 Options.DFOIntervalFactor = 1;
 Options.StoreInterval = 1 / 1000;
 Options.Init_Stor = '1000';
-%loss = 'CuterDFO';
+% loss = 'CuterDFO';
 
 % Setting up default values if no data file is provided
 if ~exist('datas', 'var')
@@ -48,8 +45,8 @@ if ~exist('rand_runs_adamethods', 'var')
     rand_runs_adamethods = 5;
 end
 
-%% Dictinoary of Optimal Step-size values for different data sets and 
-% regularization (sigma) values. 
+% Dictinoary of Optimal Step-size values for different data sets and
+% regularization (sigma) values.
 
 variables_data = containers.Map;
 steps_SG_SS = containers.Map;
@@ -60,7 +57,8 @@ data_lib = {'15-absnormal', '15-relnormal', '18-absnormal', '18-relnormal', ...
     '305-absnormal', '305-relnormal', '124-absnormal', '124-relnormal', ...
     '123-absnormal', '123-relnormal'};
 
-variable_lib = {30, 30, 11, 11, 50, 50, 20, 20, 8, 8, 125, 125, 110, 110, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
+variable_lib = {30, 30, 11, 11, 50, 50, 20, 20, 8, 8, 125, 125, 110, ...
+       110, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
 sigma_lib = {10^-3, 10^-5};
 
 steps_SG_lib = [-10 -10 -5 -5 -13 -13 -12 -10 -11 -10 -11 -8 -9 -9 -8 -8 -10 -10 -6 -6 -20 -20
@@ -99,9 +97,9 @@ for dat = 1:length(datas)
             alphaSG = 2^steps(1);
             alphaSS = 2^steps(2);
             d = variables;
-            
+
             % Running Finite Difference SG Method (SG-FD)
-            Options.DFODirs = []; 
+            Options.DFODirs = [];
             for seed = 1:rand_runs_adamethods
                 Options.lambda = lambda;
                 Options.alpha0 = alphaSG;
@@ -136,21 +134,19 @@ end
 %     "220-absnormal" "220-relnormal" "216-absnormal" "216-relnormal", ...
 %     "305-absnormal" "305-relnormal" "124-absnormal" "124-relnormal", ...
 %     "123-absnormal" "123-relnormal"];
-% 
-% Optimal Step size value for "Cuter Loss", sig=10^-5, Finite Difference 
+%
+% Optimal Step size value for "Cuter Loss", sig=10^-5, Finite Difference
 % steps_vals_lowsig_FD_cuter = [2^-10 2^-12 2^-10 2^-11 2^-13 2^-5 2^-11 ...
 %          2^-10 2^-13 2^-5 2^-9 2^-8 2^-9 2^-9 2^-8, ...
 %          2^-8 2^-10 2^-10 2^-6 2^-6 2^-20 2^-20];
-% 
-% Optimal Step size value for "Cuter Loss", sig=10^-3, Finite Difference 
+%
+% Optimal Step size value for "Cuter Loss", sig=10^-3, Finite Difference
 % steps_vals_highsig_FD_cuter = [2^-10 2^-12 2^-10 2^-11 2^-13 2^-5 2^-10 2^-10 ...
 %          2^-13 2^-5 2^-11 2^-8 2^-9 2^-9 2^-8 2^-8 ...
 %          2^-10 2^-10 2^-6 2^-6 2^-20 2^-20];
-% 
+%
 % Optimal Step size value for "Cuter Loss", sig=10^-5, Sphere Smoothing
-% 
-% 
-% 
+%
 % % SG Algorithm - Running for sigma=10^-5;
 % sigma = 10^-5;
 % Options.S0 = 2;
@@ -170,7 +166,7 @@ end
 %         CallSGAlgorithm(loss, data, Options, 'SG-DFO', seed);
 %     end
 % end
-% 
+%
 % % SG Algorithm - Running for sigma=10^-3;
 % sigma = 10^-3;
 % Options.S0 = 2;
@@ -189,24 +185,24 @@ end
 %         CallSGAlgorithm(loss, data, Options, 'SG-DFO', seed);
 %     end
 % end
-% 
+%
 % % SG Algorithm - Running for Rand-50-50
 % loss = 'MAD';
 % Options.lambda = [];
 % data = 'Rand-50-50';
-% 
+%
 % % For identity matrix
 % data='Eye-50-50';
 % %Optimal stepsize
 % Options.alpha0=2^-10; %Eye-50-50 alpha=2^-5 for 100; 2^-10 for 2
-% 
+%
 % Optimal stepsize
 % Options.alpha0 = 2^-14; % Rand-50-50 alpha=2^-12 for 100; 2^-14 for 2
 % Options.S0 = 2;
 % for seed = 1:5
 %     CallSGAlgorithm(loss, data, Options, 'SG-DFO', seed);
 % end
-% 
+%
 % % Running Sphere Smoothing Algorithms now
 % datas = {'15-absnormal', '20-absnormal', '15-relnormal', '22-absnormal', ...
 %     '19-absnormal-50', '18-absnormal', '20-relnormal', '22-relnormal', '19-relnormal-50', ...
@@ -242,7 +238,7 @@ end
 %         CallSGAlgorithm(loss, data, Options, 'SG-DFO', seed);
 %     end
 % end
-% 
+%
 % % Sphere Smoothing Algorithm - Running for sigma=10^-3;
 % sigma = 10^-3;
 % Options.S0 = 2;
@@ -265,7 +261,7 @@ end
 %         CallSGAlgorithm(loss, data, Options, 'SG-DFO', seed);
 %     end
 % end
-% 
+%
 % % Sphere Smoothing Algorithm - Running for Rand-50-50
 % loss = 'MAD';
 % Options.lambda = [];
@@ -276,7 +272,7 @@ end
 % Options.alpha0=2^-10; %Eye-50-50 alpha=2^-5 for 100; 2^-10 for 2
 % %For GS
 % Options.alpha0=2^-8; %Eye-50-50 alpha=2^-5 for 100; 2^-10 for 2
-% 
+%
 % data = 'Rand-50-50';
 % Options.alpha0=2^-16; %Rand-50-50 alpha=2^-12 for 100; 2^-14 for 2-FD-SG
 % Options.alpha0 = 2^-19; % Rand-50-50 alpha=2^-12 for 100; 2^-14 for 2
