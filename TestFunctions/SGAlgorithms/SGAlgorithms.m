@@ -1,9 +1,9 @@
 function [w, output] = SGAlgorithms(Obj, inputvals, Options, w)
-% This is the main file for running the Optimization algorithms as part of
-% Adaptive Sampling Project.
-% It requires the following inputs as explained below
+% This is the main file for running the comparative optimization algorithms 
+% for the ZOAdaQN paper.
+% It requires the following inputs as explained below.
 %
-% Obj: This is declared as a function which gives the functional value and
+% Obj: This is declared as a function that gives the functional value and
 %      the gradient value too for full and batch caaes. That is
 % Obj.func: Gives function and gradient values of the whole function
 % Obj.funcBatch: Gives the sample average objective and sample average
@@ -11,15 +11,14 @@ function [w, output] = SGAlgorithms(Obj, inputvals, Options, w)
 %
 % inputvals: This is the input that need to be given into the Obj for
 %            getting the functional values. Usually, for logistic
-%            regression, it has X,y.This should atleast contain
-%            ndatapnts (N): Total number of component functions.
-%
-%            nvars(n): Total number of variables
+%            regression, it has X,y. This should at least contain:
+%               ndatapnts (N): Total number of component functions.
+%               nvars(n): Total number of variables.
 % w:         if possible w (initial weights) should be given
 %            else, initial weight will be taken as 0.
 %
 % Options: This should contain the parameters required in the algorithm
-%          The following are the parameters which need to be specified and
+%          The following are the parameters that need to be specified and
 %          their default values, if not specified.
 %
 %

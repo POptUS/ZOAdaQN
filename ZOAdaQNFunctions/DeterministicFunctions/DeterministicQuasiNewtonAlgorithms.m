@@ -1,18 +1,17 @@
 function [w, output] = DeterministicQuasiNewtonAlgorithms(Obj, inputvals, Options, w)
-    % This is the main file for running the Deterministic Optimization algorithms
-    % It requires the following inputs as explained below
+    % This is the main file for running the Deterministic Optimization algorithms.
+    % It requires the following inputs as explained below.
     %
     % Obj: This is declared as a function which gives the functional value and
-    %      the gradient value too for full and batch caaes. That is
+    %      the gradient value too for full and batch codes. That is
     % Obj.func: Gives function and gradient values of the whole function
     %
     %
     % inputvals: This is the input that need to be given into the Obj for
     %            getting the functional values. Usually, for logistic
-    %            regression, it has X,y.This should atleast contain
-    %            ndatapnts (N): Total number of component functions.
-    %
-    %            nvars(n): Total number of variables
+    %            regression, it has X,y. This should at least contain:
+    %               ndatapnts (N): Total number of component functions.
+    %               nvars(n): Total number of variables
     % w:         if possible w (initial weights) should be given
     %            else, initial weight will be taken as 0.
     %
