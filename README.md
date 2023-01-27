@@ -2,7 +2,7 @@
 
 An adaptive quasiNewton algorithm for zeroth-order stochastic optimization
 
-![GitHub](https://img.shields.io/github/license/poptus/ZOAdaQN) 
+![GitHub](https://img.shields.io/github/license/POptUS/ZOAdaQN)
 
 This code was first introduced in the [paper](https://arxiv.org/abs/2109.12213) "Adaptive Sampling Quasi-Newton Methods for Zeroth-Order Stochastic 
 Optimization" by Raghu Bollapragada and Stefan M. Wild.
