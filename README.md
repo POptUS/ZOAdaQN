@@ -1,6 +1,6 @@
 # ZOAdaQN 
 
-An adaptive quasiNewton algorithm for zeroth-order stochastic optimization
+An adaptive quasi-Newton algorithm for zeroth-order stochastic optimization
 
 ![GitHub](https://img.shields.io/github/license/POptUS/ZOAdaQN)
 
