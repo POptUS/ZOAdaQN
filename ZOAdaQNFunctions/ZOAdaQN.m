@@ -1,10 +1,11 @@
 function [w, output] = ZOAdaQN(Obj, inputvals, Options, w)
+    % For license, source, & updates to ZOAdaQN, see https://github.com/POptUS/ZOAdaQN
     % This is the main function file for running the derivative free quasi-
-    % Newton optimization algorithms given in the paper.
+    % Newton optimization algorithms given in the paper by Bollapragada & Wild.
     % The code is written for finite-sum structure; so the original stochastic
     % problem is solved by sampling large (around 1000000) samples from the
     % stochastic distribution.
-
+    %
     % It requires the following inputs as explained below
     %
     % Obj: This is declared as a function which gives the functional value and

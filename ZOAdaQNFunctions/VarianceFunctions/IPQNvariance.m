@@ -15,7 +15,7 @@ function [samvar] = IPQNvariance(batch, bias, Obj, inputvals, w, H0, history, g_
     % H0: initial estimate of the quasi-Newton hessian
     % history: consists of curvature pairs history.y, histiry.s
     % k: number of curvature pairs in history
-
+    %
     % The outputs are:
     %  samvar: sample variance (2nd moment) of ipqn condition
 

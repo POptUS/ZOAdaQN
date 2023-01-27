@@ -1,8 +1,7 @@
 function [Options] = Initialize()
-    % This is an intialization file which contains of all the Options required for
-    % running the Adaptive Sampling Project.
-
-    % We are intializing all the parameters here.
+    % For license, source, & updates to ZOAdaQN, see https://github.com/POptUS/ZOAdaQN
+    % This is an intialization file which contains all the Options required for
+    % running ZOAdaQN.
 
     Options.Method = 'DSS';
 

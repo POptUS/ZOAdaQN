@@ -1,4 +1,6 @@
 function [] = CallZOAdaQN(loss, data, Options, Expmnt, i)
+    % For license, source, & updates to ZOAdaQN, see https://github.com/POptUS/ZOAdaQN
+    %
     % This functions takes in the input values from the model and calls in the
     % respective optimization algorithm and stores the data in the respective
     % results file with the respective name.

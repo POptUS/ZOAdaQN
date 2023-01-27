@@ -12,7 +12,7 @@ function [var, skew] = Normvariance(batch, mean, Obj, inputvals, w)
     % inputvals: This is the input that need to be given into the Obj for
     %            getting the functional values.
     % w: the current iterate
-
+    %
     %
     % The outputs are:
     %  var: sample variance (2nd moment)

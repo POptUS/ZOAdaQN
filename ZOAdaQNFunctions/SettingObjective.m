@@ -1,6 +1,7 @@
 function [Obj, inputvals, w] = SettingObjective(loss, data, Options)
-    % This function sets the objective functions for a given loss function is given.
-    % Usually loss function is CuterDFO
+    % For license, source, & updates to ZOAdaQN, see https://github.com/POptUS/ZOAdaQN
+    % This function sets the objective functions for a given loss function.
+    % Usually the loss function is CuterDFO
     if nargin < 2 || isempty(data)
         data = '15-absnormal';
     end
