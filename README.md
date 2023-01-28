@@ -54,6 +54,17 @@ Please cite the following [paper](https://arxiv.org/abs/2109.12213):
 }
 ```
 
+This source code can be cited via:
+```
+@Misc{ZOADAQN,
+  Author    = {Raghu Bollapragada and Stefan M. Wild},
+  Title     = {{ZOAdaQN}: An Adaptive Quasi-{N}ewton Algorithm for Zeroth-Order Stochastic Optimization},
+  Year      = {2023},
+  Doi       = {10.5281/zenodo.7579239},
+  Howpublished = {\url{https://github.com/POptUS/ZOAdaQN}},
+}
+```
+
 ## Contributing to ZOAdaQN 
 
 Contributions are welcome in a variety of forms; please see [CONTRIBUTING](CONTRIBUTING.rst).
